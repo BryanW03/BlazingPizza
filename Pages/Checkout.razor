@@ -1,0 +1,36 @@
+@page "/checkout"
+@inject OrderState OrderState
+@inject NavigationManager NavigationManager
+
+<div class="main">
+    <h1>Checkout</h1>
+
+    @if (!OrderState.Order.Pizzas.Any())
+    {
+        <p>Your order is empty. <a href="">Choose a pizza</a>.</p>
+    }
+    else
+    {
+        <ul class="list-group mb-3">
+            @foreach (var pizza in OrderState.Order.Pizzas)
+            {
+                <li class="list-group-item d-flex justify-content-between">
+                    <span>@(pizza.Size)" @pizza.Special.Name</span>
+                    <span class="item-price">@pizza.GetFormattedTotalPrice()</span>
+                </li>
+            }
+        </ul>
+
+        <p>Total: <strong class="item-price">@OrderState.Order.GetFormattedTotalPrice()</strong></p>
+
+        <button class="btn btn-warning" @onclick="PlaceOrder">Place order</button>
+    }
+</div>
+
+@code {
+    void PlaceOrder()
+    {
+        OrderState.PlaceOrder();
+        NavigationManager.NavigateTo("myorders");
+    }
+}

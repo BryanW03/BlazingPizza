@@ -1,0 +1,31 @@
+@page "/myorders"
+@inject OrderState OrderState
+
+<div class="main">
+    <h1>My Orders</h1>
+
+    @if (!OrderState.PlacedOrders.Any())
+    {
+        <p>You have no orders yet. <a href="">Order a pizza</a>.</p>
+    }
+    else
+    {
+        <div class="list-group orders-list">
+            @foreach (var item in OrderState.PlacedOrders.Select(OrderWithStatus.FromOrder))
+            {
+                <div class="list-group-item">
+                    <div class="col">
+                        <h5>@item.Order.CreatedTime.ToString("dd MMM yyyy HH:mm")</h5>
+                        Items:
+                        <strong>@item.Order.Pizzas.Count</strong>;
+                        Total price:
+                        <strong class="item-price">@item.Order.GetFormattedTotalPrice()</strong>
+                    </div>
+                    <div class="col">
+                        Status: <strong>@item.StatusText</strong>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>

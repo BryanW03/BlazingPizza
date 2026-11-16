@@ -1,0 +1,28 @@
+@inherits LayoutComponentBase
+
+<div class="top-bar">
+    <img class="logo" src="img/logo.svg" alt="Blazing Pizza" />
+
+    <NavLink href="" class="nav-tab" Match="NavLinkMatch.All">
+        <img src="img/pizza-slice.svg" alt="" />
+        <div>Get Pizza</div>
+    </NavLink>
+
+    <NavLink href="myorders" class="nav-tab">
+        <img src="img/bike.svg" alt="" />
+        <div>My Orders</div>
+    </NavLink>
+</div>
+
+<div class="content">
+    @Body
+</div>
+
+<footer class="app-footer">
+    &copy; @DateTime.Now.Year Blazing Pizza &middot; @FullName &middot; @Country
+</footer>
+
+@code {
+    private const string FullName = "Brayan De Leon";
+    private const string Country = "Dominican Republic";
+}
