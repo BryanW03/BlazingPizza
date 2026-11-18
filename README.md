@@ -1,6 +1,6 @@
 # Blazing Pizza (CSE 325 – W03)
 
-Blazor Server app (.NET 9) from the Microsoft Learn path *Build web applications with Blazor*.
+Blazor Server app (.NET 8) from the Microsoft Learn path *Build web applications with Blazor*.
 
 Changes for the W03 assignment:
 1. All prices are shown in Dominican pesos (RD$).
